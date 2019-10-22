@@ -20,7 +20,6 @@ function preload() {
   snake_head = loadImage('./assests_images/snake_head.png')
   snake_body = loadImage('./assests_images/snake_body.png')
 
-  //bat = loadImage('./assests_images/bat.png')
   bat_2 = loadImage('./assests_images/bat_2.png')
 
   pumpkin = loadImage('./assests_images/pumpkin.png')
