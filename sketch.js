@@ -53,7 +53,6 @@ function draw() {
 
     //text
     var myText = "Waiting 4 Halloweeeeeeen";
-    var myText_2 = "Speak loud!";
     textFont("VT323");
     textSize(50);
     stroke(0);
@@ -61,11 +60,21 @@ function draw() {
     drawingContext.font = "220, VT323";
     drawingContext.textAlign = "center";
     text(myText, width / 2, height / 1.3);
-    text(myText_2, width / 2, height / 1.2);
 
   } else {
     image(pumpkin, width / 2, height / 2, 120, 100);
     background(69, 69, 69, 70);
+    var myText_3 = "Drag the snake";
+    var myText_2 = "Speak loud!";
+    textFont("VT323");
+    textSize(50);
+    stroke("black");
+    fill("white");
+    drawingContext.font = "220, VT323";
+    drawingContext.textAlign = "center";
+    text(myText_3, width / 2, height / 1.3);
+    text(myText_2, width / 2, height / 1.2);
+
   }
 
   dragSegment(0, mouseX, mouseY);
