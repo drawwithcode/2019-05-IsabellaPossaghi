@@ -28,12 +28,13 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  colorMode(RGB)
+
   mic = new p5.AudioIn();
 }
 
 function draw() {
-  background(69, 69, 69, 70);
+  //background(69, 69, 69, 70);
+  colorMode(RGB);
 
   mic.start();
   let b = new Bats();
@@ -47,25 +48,24 @@ function draw() {
   var r = 100
   var w = width / 2;
   var k = height / 2;
-  var f = 100
   //ellipse changing color
   if (dist(w, k, mouseX, mouseY) < 50) {
     background(255, 69, 10, 70);
-    image(pumpkin, w * random(1, 1.01), k * random(1, 1.01), 250, 200)
+    image(pumpkin, w * random(1, 1.01), k * random(1, 1.01), 350, 300);
     //text
-    var myText = "Waiting 4 Halloweeeeeeen"
-    var myText_2 = "Speak loud!"
+    var myText = "Waiting 4 Halloweeeeeeen";
+    var myText_2 = "Speak loud!";
     textFont("VT323");
     textSize(50);
-    stroke(0)
-    fill("orange")
+    stroke(0);
+    fill("orange");
     //fill("red")
     drawingContext.font = "220, VT323";
     drawingContext.textAlign = "center";
     text(myText, width / 2, height / 1.3);
     text(myText_2, width / 2, height / 1.2);
   } else {
-    image(pumpkin, width / 2, height / 2, 70, 50)
+    image(pumpkin, width / 2, height / 2, 120, 100);
     background(69, 69, 69, 70);
   }
 
@@ -92,12 +92,12 @@ class Bats {
   }
 
   moving() {
-    this.j += this.vj * 5;
-    this.k += this.vk * 5;
+    this.j += this.vj *10;
+    this.k += this.vk *10 ;
   }
 
   show() {
-    image(bat_2, this.j * random(1, 1.01), this.k * random(1, 1.01), 50, 30)
+    image(bat_2, this.j, this.k , 40 * random(1, 2) , 20* random(1, 2));
 
   }
 }
