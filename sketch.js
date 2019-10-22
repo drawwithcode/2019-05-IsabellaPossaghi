@@ -87,7 +87,6 @@ class Bats {
     var speed = mic.getLevel() * 10;
     this.vj = random(-speed, +speed);
     this.vk = random(-speed, +speed);
-    rotation(b)
 
   }
 
@@ -98,7 +97,6 @@ class Bats {
 
   show() {
     image(bat_2, this.j, this.k, 40 * random(1, 2), 20 * random(1, 2));
-
   }
 }
 
