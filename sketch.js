@@ -1,3 +1,7 @@
+//bats variables
+let bats = [];
+var mic;
+
 //variables to create the composition of the snake
 let x = [],
   y = [],
@@ -12,27 +16,41 @@ for (let i = 0; i < segNum; i++) {
 
 
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
+function preload() {
   snake_head = loadImage('./assests_images/snake_head.png')
   snake_body = loadImage('./assests_images/snake_body.png')
-  eye = loadImage('./assests_images/eye.png')
+
+  //bat = loadImage('./assests_images/bat.png')
+  bat_2 = loadImage('./assests_images/bat_2.png')
+
   pumpkin = loadImage('./assests_images/pumpkin.png')
-  //background(0, 50); ---> to drawing with line's traces
-  //voice interaction
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
   mic = new p5.AudioIn();
 }
 
 function draw() {
-  background(0, 50);
+  background(69, 69, 69, 70);
+
+  mic.start();
+  let b = new Bats();
+  bats.push(b);
+  for (let z = 0; z < bats.length; z++) {
+    bats[z].moving();
+    bats[z].show();
+
+  }
 
   var r =100
   var w = width/2;
   var k = height/2;
+  var f =100
   //ellipse changing color
-  if(dist(w,k,mouseX,mouseY)< r) {
+  if(dist(w,k,mouseX,mouseY)< 50) {
    //fill(255,0,0);
-   image(pumpkin, w, k, r*6)
+   image(pumpkin, w, k, 140, 120)
    //text
    var myText = "Waiting 4 Halloweeeeeeen"
       textFont("VT323");
@@ -44,28 +62,9 @@ function draw() {
       drawingContext.textAlign = "center";
       text(myText, width / 2, height / 1.3);
  } else {
-  image(pumpkin, width/2, height/2, 50, 40)
+  image(pumpkin, width/2, height/2, 70, 50)
+
  }
-
-
-
-  //grid of eyeballs
-  for (var r = 65; r < windowWidth; r += 65) {
-    for (var q = 65; q < windowHeight; q += 65) {
-      var distance = dist(r, q, mouseX, mouseY);
-
-      //the smallest is 0, the bigger is 25
-      var remap = map(distance, 0, 600, 0, 25);
-
-      if (mouseIsPressed) {
-        image(eye, r, q, remap, remap)
-      }
-
-    }
-  }
-
-  //square
-  //square(width/2, height/2, 500, 500, 30, 30);
 
   dragSegment(0, mouseX, mouseY);
   for (let i = 0; i < y.length - 1; i++) {
@@ -73,16 +72,36 @@ function draw() {
     stroke("Teal");
     strokeWeight(10);
   }
-  // This is not necessary to be written:
-  // for (let i = 0; i < x.length - 1; i++) {
-  //   dragSegment(i + 1, x[i], y[i]);
-  // }
-
-
 
 }
 
-//snakeee
+class Bats {
+
+  constructor() {
+    //spawning point
+    this.j = windowWidth / 2;
+    this.k = windowHeight / 2;
+    //mic sensibility + bats speed
+    var speed = mic.getLevel() * 10;
+    this.vj = random(-speed, +speed);
+    this.vk = random(-speed, +speed);
+
+  }
+
+  moving() {
+    this.j += this.vj * 5;
+    this.k += this.vk * 5;
+
+
+
+  }
+
+  show() {
+  image(bat_2, this.j, this.k, 50, 30)
+
+  }
+}
+
 function dragSegment(i, xin, yin) {
   const dx = xin - x[i];
   const dy = yin - y[i];
@@ -105,4 +124,8 @@ function segment(x, y, a) {
   line(0, 0, segLength, 0); //snake belly
   image(snake_body, 0, 0, 50, 50)
   pop();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
