@@ -28,6 +28,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  colorMode(RGB)
   mic = new p5.AudioIn();
 }
 
@@ -43,28 +44,30 @@ function draw() {
 
   }
 
-  var r =100
-  var w = width/2;
-  var k = height/2;
-  var f =100
+  var r = 100
+  var w = width / 2;
+  var k = height / 2;
+  var f = 100
   //ellipse changing color
-  if(dist(w,k,mouseX,mouseY)< 50) {
-   //fill(255,0,0);
-   image(pumpkin, w, k, 140, 120)
-   //text
-   var myText = "Waiting 4 Halloweeeeeeen"
-      textFont("VT323");
-      textSize(50);
-      noStroke()
-      fill("DarkOrange")
-      //fill("red")
-      drawingContext.font = "220, VT323";
-      drawingContext.textAlign = "center";
-      text(myText, width / 2, height / 1.3);
- } else {
-  image(pumpkin, width/2, height/2, 70, 50)
-
- }
+  if (dist(w, k, mouseX, mouseY) < 50) {
+    background(255, 69, 10, 70);
+    image(pumpkin, w * random(1, 1.01), k * random(1, 1.01), 250, 200)
+    //text
+    var myText = "Waiting 4 Halloweeeeeeen"
+    var myText_2 = "Speak loud!"
+    textFont("VT323");
+    textSize(50);
+    noStroke()
+    fill("0")
+    //fill("red")
+    drawingContext.font = "220, VT323";
+    drawingContext.textAlign = "center";
+    text(myText, width / 2, height / 1.3);
+    text(myText_2, width / 2, height / 1.2);
+  } else {
+    image(pumpkin, width / 2, height / 2, 70, 50)
+    background(69, 69, 69, 70);
+  }
 
   dragSegment(0, mouseX, mouseY);
   for (let i = 0; i < y.length - 1; i++) {
@@ -91,13 +94,10 @@ class Bats {
   moving() {
     this.j += this.vj * 5;
     this.k += this.vk * 5;
-
-
-
   }
 
   show() {
-  image(bat_2, this.j, this.k, 50, 30)
+    image(bat_2, this.j * random(1, 1.01), this.k * random(1, 1.01), 50, 30)
 
   }
 }
@@ -112,14 +112,14 @@ function dragSegment(i, xin, yin) {
 
   segment(x[i], y[i], angle);
 
-  image(snake_head, mouseX, mouseY, 60, 50) //snake's head
+  image(snake_head, mouseX * random(1, 1.002), mouseY * random(1, 1.002), 60, 50) //snake's head
   imageMode(CENTER)
   cursor(CROSS);
 }
 
 function segment(x, y, a) {
   push();
-  translate(x, y);
+  translate(x * random(1, 1.002), y * random(1, 1.002));
   rotate(a);
   line(0, 0, segLength, 0); //snake belly
   image(snake_body, 0, 0, 50, 50)
