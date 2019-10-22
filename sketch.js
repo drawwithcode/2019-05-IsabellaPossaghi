@@ -57,8 +57,8 @@ function draw() {
     var myText_2 = "Speak loud!"
     textFont("VT323");
     textSize(50);
-    noStroke()
-    fill("0")
+    stroke(0)
+    fill("orange")
     //fill("red")
     drawingContext.font = "220, VT323";
     drawingContext.textAlign = "center";
