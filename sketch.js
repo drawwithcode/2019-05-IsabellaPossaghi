@@ -66,6 +66,7 @@ function draw() {
     background(69, 69, 69, 70);
     var myText_3 = "Drag the snake";
     var myText_2 = "Speak loud!";
+    var myText_4 = "If you can't see any bats, please refresh"
     textFont("VT323");
     textSize(50);
     stroke("black");
@@ -74,6 +75,7 @@ function draw() {
     drawingContext.textAlign = "center";
     text(myText_3, width / 2, height / 1.3);
     text(myText_2, width / 2, height / 1.2);
+    text(myText_4, width/2, height/ 1.1)
 
   }
 
@@ -100,8 +102,8 @@ class Bats {
   }
 
   moving() {
-    this.j += this.vj * 10;
-    this.k += this.vk * 10;
+    this.j += this.vj * 20;
+    this.k += this.vk * 20;
   }
 
   show() {
